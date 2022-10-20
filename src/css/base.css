@@ -19,7 +19,8 @@
 
 body {
   font-size: 1.6rem;
-  background: #121214;
+  /* background: #121214; */
+  background-image: url(/background.svg);
 
   display: flex;
   place-items: center;

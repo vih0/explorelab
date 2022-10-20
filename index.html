@@ -102,10 +102,13 @@
         </div>
 
         <div class="cc-logo">
-          <span><img src="/cc-icon.svg" alt="ícone padrão de cartão" /></span>
+          <span
+            ><img src="public/cc-icon.svg" alt="ícone padrão de cartão"
+          /></span>
           <span
             ><img
-              src="/cc-visa.svg"
+              class="cardLogo"
+              src="public/bandeira-master.svg"
               alt="ícone do cartão de crédito selecionado"
           /></span>
         </div>
@@ -132,7 +135,7 @@
         </div>
       </section>
 
-      <form action="">
+      <form action="" id="form">
         <div class="input-wrapper">
           <label for="card-number">Número do cartão</label>
           <input id="card-number" />
@@ -155,7 +158,7 @@
           </div>
         </div>
 
-        <button>ADICIONAR CARTÃO</button>
+        <button id="btn-add">ADICIONAR CARTÃO</button>
       </form>
     </div>
 
