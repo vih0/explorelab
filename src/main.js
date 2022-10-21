@@ -14,7 +14,7 @@ function setCardType(type) {
     cielo: ["#051525", "#1B338D"],
     elo: ["#587AF9", "#C8A52A"],
     nu: ["#8A05BE", "#8A05BEA"],
-    americanExpress: ["orange", "black"],
+    american: ["orange", "black"],
     default: ["black", "gray"],
   }
   ccBgColor1.setAttribute("fill", colors[type][0])
@@ -65,21 +65,21 @@ const numberCardPattern = {
     {
       mask: "0000 0000 0000 0000",
       regex: /^2\d{0,15}/,
-      cardType: "cielo",
+      cardType: "nu",
     },
     {
       mask: "0000 0000 0000 0000",
-      regex: /^(6011|65\d{0,2}|64[4-9]\d?)\d{0,12}/,
-      cardtype: "american express",
+      regex: /^(4011|65\d{0,2}|64[4-9]\d?)\d{0,12}/,
+      cardtype: "american",
     },
     {
       mask: "0000 000000 00000",
-      regex: /^3[47]\d{0,13}/,
-      cardtype: "nu",
+      regex: /^3\d{0,15}/,
+      cardtype: "cielo",
     },
     {
       mask: "0000 0000 0000 0000",
-      regex: /^5\d{0,15}/,
+      regex: /^9[1-6]\d{0,15}/,
       cardType: "elo",
     },
     {
@@ -114,6 +114,25 @@ addCard.addEventListener("click", () => alert("cartão adicionado"))
 const cardName = document.querySelector("#card-holder")
 cardName.addEventListener("input", () => {
   const ccHolder = document.querySelector(".cc-holder .value")
-
-  ccHolder.innerText = cardName.value
+  ccHolder.innerText = cardName.value.length === 0 ? "Fulano" : cardName.value
+})
+const cvcCode = document.querySelector("#security-code")
+cvcCode.addEventListener("input", () => {
+  const cvcHolder = document.querySelector(".cc-security .value")
+  cvcHolder.innerText = cvcCode.value.length === 0 ? "123" : cvcCode.value
+})
+const dateCode = document.querySelector("#expiration-date")
+dateCode.addEventListener("input", () => {
+  const dateHolder = document.querySelector(".cc-expiration .value")
+  dateHolder.innerText = dateCode.value.length === 0 ? "02/32" : dateCode.value
+})
+const numberCode = document.querySelector("#card-number")
+numberCode.addEventListener("input", () => {
+  const numberChange = document.querySelector(".cc-info .cc-number")
+  numberChange.innerText =
+    numberCode.value.length === 0 ? "1234 5678 9012 3456" : numberCode.value
+})
+cardNumberMask.on("accept", () => {
+  const cardType = cardNumberMask.masked.currentMask.cardType
+  setCardType(cardType)
 })
